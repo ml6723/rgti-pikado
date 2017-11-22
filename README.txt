@@ -1,3 +1,8 @@
+git add .
+git commit -m "message"
+git push origin master
+
+
 ------------------------------------------------------------------
 The official maintained repository for this project is now
 https://github.com/tparisi/webgl-lessons -- please fork from 

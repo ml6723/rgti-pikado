@@ -275,11 +275,11 @@ function drawScene() {
 
     // Now move the drawing position a bit to where we want to start
     // drawing the cube.
-    mat4.translate(mvMatrix, [8.0, 0.0, -2]);
+    mat4.translate(mvMatrix, [5.0, 0.0, -8]);
 
-/*    // Rotate before we draw.
-    mat4.rotate(mvMatrix, degToRad(rotationCubeX), [1, 0, 0]);
-    mat4.rotate(mvMatrix, degToRad(rotationCubeY), [0, 1, 0]);*/
+    // Rotate before we draw.
+    mat4.rotate(mvMatrix, degToRad(180), [1, 0, 0]);
+    mat4.rotate(mvMatrix, degToRad(0), [0, 1, 0]);
 
     // Draw the cube by binding the array buffer to the cube's vertices
     // array, setting attributes, and pushing it to GL.
