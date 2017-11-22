@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<title>WebGL - 17 Particle systems</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="./style/webgl.css" type="text/css">
+		<script type="text/javascript" src="./scripts/glMatrix-0.9.5.min.js"></script>
+		<script src="./scripts/17-particles.js" type="text/javascript"></script>
+
+	    <!-- Fragment shader program -->
+	    <script id="shader-fs" type="x-shader/x-fragment">
+			precision mediump float;
+
+	    	// uniform attribute for setting color
+			uniform vec4 uColor;
+
+	    	// uniform attribute for setting lifetime
+			varying float vLifetime;
+	    	// uniform attribute for setting texture coordinates
+			varying vec2 vTextureCoords;
+
+			// uniform attribute for setting 2D sampler
+			uniform sampler2D sTexture;
+
+
+			void main(void) {
+				vec4 texColor;
+				texColor = texture2D(sTexture, vTextureCoords);
+				gl_FragColor = vec4(uColor) * texColor;
+				gl_FragColor.a *= vLifetime;
+			}
+		</script>
+
+	    <!-- Vertex shader program -->
+		<script id="shader-vs" type="x-shader/x-vertex">
+	    	// uniform attribute for setting time
+			uniform float uTime;
+    		// atributes for setting vertex position, normals and texture coordinates
+			uniform vec3 uCenterPosition;
+			attribute vec2 aTextureCoords;
+
+	    	// uniform attribute for setting lifetime, start/end position and offset
+			attribute float aLifetime;
+			attribute vec3 aStartPosition;
+			attribute vec3 aEndPosition;
+			attribute vec2 aOffset;
+
+	    	// uniform attribute for setting lifetime and texture coordinates
+			varying float vLifetime;
+			varying vec2 vTextureCoords;
+
+
+			void main(void) {
+	    	// calculate the vertex position
+			if (uTime <= aLifetime) {
+				gl_Position.xyz = aStartPosition + (uTime * aEndPosition);
+				gl_Position.xyz += uCenterPosition;
+				gl_Position.w = 1.0;
+			} else {
+			  gl_Position = vec4(-1000, -1000, 0, 0);
+			}
+
+			vLifetime = 1.0 - (uTime / aLifetime);
+			vLifetime = clamp(vLifetime, 0.0, 1.0);
+			float size = (vLifetime * vLifetime) * 0.1;
+			gl_Position.xy += aOffset.xy * size;
+			vTextureCoords = aTextureCoords;
+			}
+		</script>
+
+		<script type="text/javascript">
+			function showValue(id, newValue)
+			{
+				document.getElementById(id+"span").innerHTML = " " + newValue;
+			}
+		</script>
+	</head>
+	<body onload="start()">
+		<h1>WebGL - 17 Particle systems</h1>
+		<div id="content">
+			<canvas id="glcanvas" width="1280px" height="720px">
+				No <code>&lt;canvas&gt;</code> suppport in your browser.
+			</canvas>
+			<br />
+			<br />
+			<a href="./"><- Back</a>
+		</div>
+	</body>
+</html>
