@@ -20,7 +20,28 @@ var featherTexture;
 // Variable that stores  loading state of textures.
 var texturesLoaded = false;
 
-//
+//koordinate puscice
+var zpuscice=0;
+var ypuscice=0;
+var xpuscice=0;
+//razdalje do tarce, nframeov
+var a=100;
+var dif2=0;
+var dif=0;
+/**metpuscice
+mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
+if(zpuscice<40){
+    zpuscice+=0.2;
+    if (dif<a){
+        ypuscice+=(0.001*(a-dif));
+    }else{
+        ypuscice-=(0.1*(a-dif2));
+        dif--;
+    }
+    dif++;
+}
+**/
+
 // Matrix utility functions
 //
 // mvPush   ... push current matrix on matrix stack
