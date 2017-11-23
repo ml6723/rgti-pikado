@@ -35,6 +35,9 @@ var texturesLoaded = 0;
 // Helper variable for animation
 var lastTime = 0;
 
+//tipke
+var currentlyPressedKeys = {};
+
 //koordinate puscice
 var zpuscice=0;
 var ypuscice=0;
@@ -43,6 +46,9 @@ var xpuscice=0;
 var a=50;
 var dif2=a;
 var dif=0;
+//zacni/koncaj animacijo
+var reset=false;
+var pause=true;
 /**metpuscice
 mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
 if(zpuscice<40){
@@ -68,26 +74,59 @@ function handleKeys() {
         positionCubeZ += 0.05;
     }
     */
-    if (currentlyPressedKeys[37]) {
-        // Left cursor key
-        ypuscice -= 0.01;
-    }
-    if (currentlyPressedKeys[39]) {
-        // Right cursor key
-        ypuscice += 1;
-    }
-    if (currentlyPressedKeys[38]) {
-        // Up cursor key
-        xpuscice -= 1;
-    }
-    if (currentlyPressedKeys[40]) {
-        // Down cursor key
-        xpuscice += 1;
+    if(pause===true) {
+        if (currentlyPressedKeys[37]) {
+            // Left cursor key
+            xpuscice -= 0.01;
+        }
+        if (currentlyPressedKeys[39]) {
+            // Right cursor key
+            xpuscice += 0.01;
+        }
+        if (currentlyPressedKeys[38]) {
+            // Up cursor key
+            ypuscice -= 0.01;
+        }
+        if (currentlyPressedKeys[40]) {
+            // Down cursor key
+            ypuscice += 0.01;
+        }
     }
     if (currentlyPressedKeys[32]) {
         // Space Key
-        dartThrow;
+        //dartThrow;
+        pause=false;
     }
+    if (currentlyPressedKeys[13]) {
+        // enter ---reset
+        zpuscice=0;
+        ypuscice=0;
+        xpuscice=0;
+        a=50;
+        dif2=a;
+        dif=0;
+        pause=true;
+        reset=true;
+        //initBuffers();
+    }
+}
+
+function handleKeyDown(event) {
+    // storing the pressed state for individual key
+    currentlyPressedKeys[event.keyCode] = true;
+
+    // handling single keypress for switching filters
+    if (String.fromCharCode(event.keyCode) == "F") {
+        filter += 1;
+        if (filter == 3) {
+            filter = 0;
+        }
+    }
+}
+
+function handleKeyUp(event) {
+    // reseting the pressed state for individual key
+    currentlyPressedKeys[event.keyCode] = false;
 }
 
 function dartThrow() {
@@ -413,18 +452,21 @@ function drawScene() {
     mat4.rotate(mvMatrix, degToRad(180), [1, 0, 0]);
     mat4.rotate(mvMatrix, degToRad(0), [0, 1, 0]);
 
-    mat4.translate(mvMatrix,[xpuscice,ypuscice,zpuscice]);
-    if(zpuscice<100){
-        zpuscice+=0.5;
-        if (dif<a){
-            ypuscice-=(0.001*(a-dif));
-        }else{
-            ypuscice+=(0.001*(a-dif2));
-            dif2--;
+    if(pause===false) {
+        mat4.translate(mvMatrix, [xpuscice, ypuscice, zpuscice]);
+        if (zpuscice < 50) {
+            zpuscice += 0.5;
+            if (dif < a) {
+                ypuscice -= (0.001 * (a - dif));
+            } else {
+                ypuscice += (0.001 * (a - dif2));
+                dif2--;
+            }
+            dif++;
         }
-        dif++;
+    }else{
+        mat4.translate(mvMatrix, [xpuscice, ypuscice,0.0]);
     }
-
 
     // Draw the cube by binding the array buffer to the cube's vertices
     // array, setting attributes, and pushing it to GL.
@@ -531,9 +573,14 @@ function start() {
         // Next, load and set up the textures we'll be using.
         initTextures();
 
+        // Bind keyboard handling functions to document handlers
+        document.onkeydown = handleKeyDown;
+        document.onkeyup = handleKeyUp;
+
         // Set up to draw the scene periodically.
         setInterval(function() {
             if(texturesLoaded == numberOfTextures) {
+                handleKeys();
                 drawScene();
             }
         }, 15);
