@@ -593,7 +593,7 @@ function drawScene() {
     //met
     if(pause===false) {
         mat4.translate(mvMatrix, [xpuscice, ypuscice, zpuscice]);
-        if (zpuscice < 100) {
+        if (zpuscice < zTarget) {
             zpuscice += 0.5;
             if (dif < a) {
                 ypuscice -= (0.001 * (a - dif));
