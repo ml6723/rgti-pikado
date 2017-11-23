@@ -349,6 +349,21 @@ function initBuffers() {
 //
 // Draw the scene.
 //
+var zpuscice=0;
+var ypuscice=0;
+var xpuscice=0;
+var dif=0;
+//razdalje
+var dif2=100;
+var a=100;
+
+var zpuscice2=0;
+var ypuscice2=0;
+var xpuscice2=0;
+var dif3=0;
+//razdalje
+var dif4=100;
+var a2=100;
 function drawScene() {
   // set the rendering environment to full canvas size
   gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
@@ -370,11 +385,23 @@ function drawScene() {
   // Now move the drawing position a bit to where we want to start
   // drawing the pyramid.
   mat4.translate(mvMatrix, [-1.5, 0.0, -7.0]);
+
   
   // Save the current matrix, then rotate before we draw.
   mvPushMatrix();
-  mat4.rotate(mvMatrix, degToRad(rotationPyramid), [0, 1, 0]);
 
+  //mat4.rotate(mvMatrix, degToRad(rotationPyramid), [0, 1, 0]);
+    mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
+    if(zpuscice<40){
+        zpuscice+=0.2;
+        if (dif<a){
+            ypuscice+=(0.001*(a-dif));
+            dif++;
+        }else{
+            ypuscice-=(0.1*(a-dif2));
+            dif--;
+        }
+    }
   // Draw the pyramid by binding the array buffer to the cube's vertices
   // array, setting attributes, and pushing it to GL.
   gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexPositionBuffer);
@@ -400,8 +427,18 @@ function drawScene() {
 
   // Save the current matrix, then rotate before we draw.
   mvPushMatrix();
-  mat4.rotate(mvMatrix, degToRad(rotationCube), [1, 1, 1]);
-
+  //mat4.rotate(mvMatrix, degToRad(rotationCube), [1, 1, 1]);
+    mat4.translate(mvMatrix,[xpuscice2,ypuscice2,-zpuscice2]);
+    if(zpuscice2<40){
+        zpuscice2+=0.2;
+        if (dif3<a2){
+            ypuscice2+=(0.001*(a2-dif3));
+            dif3++;
+        }else{
+            ypuscice2-=(0.1*(a2-dif4));
+            dif3--;
+        }
+    }
   // Draw the cube by binding the array buffer to the cube's vertices
   // array, setting attributes, and pushing it to GL.
   gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
