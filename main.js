@@ -36,8 +36,13 @@ var texturesLoaded = 0;
 // Helper variable for animation
 var lastTime = 0;
 
+
+//tipke
+var currentlyPressedKeys = {};
+
 // target radius
 var radius = 2.2;
+
 
 //koordinate puscice
 var zpuscice=0;
@@ -47,6 +52,13 @@ var xpuscice=1.2;
 var a=50;
 var dif2=a;
 var dif=0;
+
+//zacni/koncaj animacijo
+var reset=false;
+var pause=true;
+/**metpuscice
+mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
+**/
 
 //koordinate tarce
 var zTarget = 82;
@@ -142,6 +154,7 @@ function is_in_triangle (px,py,ax,ay,bx,by,cx,cy) {
 
 //metpuscice
 /*mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
+
 if(zpuscice<40){
     zpuscice+=0.2;
     if (dif<a){
@@ -155,6 +168,76 @@ if(zpuscice<40){
 
 
 
+
+function handleKeys() {
+  /*
+    if (currentlyPressedKeys[33]) {
+        // Page Up
+        positionCubeZ -= 0.05;
+    }
+    if (currentlyPressedKeys[34]) {
+        // Page Down
+        positionCubeZ += 0.05;
+    }
+    */
+    if(pause===true) {
+        if (currentlyPressedKeys[37]) {
+            // Left cursor key
+            xpuscice -= 0.01;
+        }
+        if (currentlyPressedKeys[39]) {
+            // Right cursor key
+            xpuscice += 0.01;
+        }
+        if (currentlyPressedKeys[38]) {
+            // Up cursor key
+            ypuscice -= 0.01;
+        }
+        if (currentlyPressedKeys[40]) {
+            // Down cursor key
+            ypuscice += 0.01;
+        }
+    }
+    if (currentlyPressedKeys[32]) {
+        // Space Key
+        //dartThrow;
+        pause=false;
+    }
+    if (currentlyPressedKeys[13]) {
+        // enter ---reset
+        zpuscice=0;
+        ypuscice=0;
+        xpuscice=0;
+        a=50;
+        dif2=a;
+        dif=0;
+        pause=true;
+        reset=true;
+        //initBuffers();
+    }
+}
+
+function handleKeyDown(event) {
+    // storing the pressed state for individual key
+    currentlyPressedKeys[event.keyCode] = true;
+
+    // handling single keypress for switching filters
+    if (String.fromCharCode(event.keyCode) == "F") {
+        filter += 1;
+        if (filter == 3) {
+            filter = 0;
+        }
+    }
+}
+
+function handleKeyUp(event) {
+    // reseting the pressed state for individual key
+    currentlyPressedKeys[event.keyCode] = false;
+}
+
+function dartThrow() {
+    //TODO
+}
 
 // Matrix utility functions
 //
@@ -307,6 +390,8 @@ function initShaders() {
 //
 // Set the uniform values in shaders for model-view and projection matrix.
 //
+
+
 function setMatrixUniforms() {
     gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
     gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
@@ -447,6 +532,7 @@ function initBuffers() {
 //
 // Draw the scene.
 //
+
 function drawScene() {
     // set the rendering environment to full canvas size
     gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
@@ -480,25 +566,27 @@ function drawScene() {
     mat4.scale(mvMatrix, [3,3,3]);
 
     //met
-    mat4.translate(mvMatrix,[xpuscice,ypuscice,zpuscice]);
-    if(zpuscice<20){
-        if(zpuscice == 19.5)
-            print_score = true;
-
-        zpuscice+=0.5;
-        if (dif<a){
-            ypuscice-=(0.001*(a-dif));
-        }else{
-            ypuscice+=(0.001*(a-dif2));
-            dif2--;
+    if(pause===false) {
+        mat4.translate(mvMatrix, [xpuscice, ypuscice, zpuscice]);
+        if (zpuscice < 100) {
+            zpuscice += 0.5;
+            if (dif < a) {
+                ypuscice -= (0.001 * (a - dif));
+            } else {
+                ypuscice += (0.001 * (a - dif2));
+                dif2--;
+            }
+            dif++;
         }
-        dif++;
+    }else{
+        mat4.translate(mvMatrix, [xpuscice, ypuscice,0.0]);
     }
 
     if(print_score == true) {
         calculate_score();
         print_score = false;
     }
+
 
 
 
@@ -609,9 +697,14 @@ function start() {
         // Next, load and set up the textures we'll be using.
         initTextures();
 
+        // Bind keyboard handling functions to document handlers
+        document.onkeydown = handleKeyDown;
+        document.onkeyup = handleKeyUp;
+
         // Set up to draw the scene periodically.
         setInterval(function() {
             if(texturesLoaded == numberOfTextures) {
+                handleKeys();
                 drawScene();
             }
         }, 15);
