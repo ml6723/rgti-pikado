@@ -22,6 +22,7 @@ var texturesLoaded = false;
 // Variables for storing curent rotation of cube
 var rotationCubeX = 0;
 var rotationCubeY = 0;
+var movecubez=0;
 
 // Helper variable for animation
 var lastTime = 0;
@@ -331,8 +332,13 @@ function initBuffers() {
   cubeVertexIndexBuffer.itemSize = 1;
   cubeVertexIndexBuffer.numItems = 36;
 }
-
+var i=0;
+var j=0;
+var dif=0;
 //
+var dif2=100;
+var a=100;
+
 // drawScene
 //
 // Draw the scene.
@@ -358,6 +364,19 @@ function drawScene() {
   mat4.translate(mvMatrix, [0.0, 0.0, -7.0]);
 
   // Rotate before we draw.
+  mat4.translate(mvMatrix,[0.0,j,-i]);
+  if(i<40){
+    i+=0.2;
+    if (dif<a){
+     j+=(0.001*(a-dif));
+    }else{
+     j-=(0.1*(a-dif2));
+     dif--;
+    }
+    dif++;
+    
+  }
+  
   mat4.rotate(mvMatrix, degToRad(rotationCubeX), [1, 0, 0]);
   mat4.rotate(mvMatrix, degToRad(rotationCubeY), [0, 1, 0]);
 
