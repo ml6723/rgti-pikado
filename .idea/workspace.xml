@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abd3b9e5-8da1-4301-b839-2a0c3b74f092" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dart_board.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/tmp.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.txt" afterPath="$PROJECT_DIR$/README.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.js" afterPath="$PROJECT_DIR$/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/seminar1.html" afterPath="$PROJECT_DIR$/seminar1.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,53 +20,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="04-3dobjects.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/04-3dobjects.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="45" column="64" lean-forward="false" selection-start-line="45" selection-start-column="64" selection-end-line="45" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="281" column="36" lean-forward="false" selection-start-line="281" selection-start-column="36" selection-end-line="281" selection-end-column="36" />
+            <state relative-caret-position="218">
+              <caret line="387" column="0" lean-forward="true" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.txt">
+      <file leaf-file-name="13-perfragment.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/13-perfragment.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="seminar1.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/seminar1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="750">
-              <caret line="72275" column="0" lean-forward="false" selection-start-line="72275" selection-start-column="0" selection-end-line="72275" selection-end-column="0" />
-              <folding>
-                <element signature="n#script#1;n#head#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="05-textures.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/05-textures.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1000">
-              <caret line="40" column="17" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="40" selection-end-column="17" />
+            <state relative-caret-position="-1239">
+              <caret line="40" column="43" lean-forward="true" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -73,9 +43,52 @@
       <file leaf-file-name="04-3dobjects.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/04-3dobjects.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5325">
-              <caret line="213" column="0" lean-forward="false" selection-start-line="213" selection-start-column="0" selection-end-line="215" selection-end-column="59" />
+            <state relative-caret-position="458">
+              <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="171" selection-end-column="1" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="13-perfragment.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/13-perfragment.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2113">
+              <caret line="583" column="0" lean-forward="false" selection-start-line="583" selection-start-column="0" selection-end-line="584" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tmp.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/tmp.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="244">
+              <caret line="439" column="51" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="462" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="10-doom.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/10-doom.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="9177">
+              <caret line="437" column="39" lean-forward="false" selection-start-line="437" selection-start-column="39" selection-end-line="437" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="seminar1.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/seminar1.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="73962" column="29" lean-forward="true" selection-start-line="73962" selection-start-column="29" selection-end-line="73962" selection-end-column="29" />
+              <folding>
+                <element signature="n#script#1;n#head#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#script#2;n#head#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -83,8 +96,8 @@
       <file leaf-file-name="05-textures.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/05-textures.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9425">
-              <caret line="377" column="19" lean-forward="false" selection-start-line="377" selection-start-column="19" selection-end-line="377" selection-end-column="19" />
+            <state relative-caret-position="168">
+              <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="167" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -103,7 +116,7 @@
       <file leaf-file-name="11-mouse.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/11-mouse.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11975">
+            <state relative-caret-position="10059">
               <caret line="479" column="36" lean-forward="false" selection-start-line="479" selection-start-column="36" selection-end-line="479" selection-end-column="36" />
               <folding />
             </state>
@@ -123,7 +136,13 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>cubeVertexIndexBuffer</find>
+      <find>pMatrix</find>
+      <find>dart</find>
+      <find>createProgram</find>
     </findStrings>
+    <replaceStrings>
+      <replace>target</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -132,8 +151,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/scripts/04-3dobjects.js" />
-        <option value="$PROJECT_DIR$/seminar1.html" />
         <option value="$PROJECT_DIR$/README.txt" />
+        <option value="$PROJECT_DIR$/Dart_board.js" />
+        <option value="$PROJECT_DIR$/seminar1.html" />
+        <option value="$PROJECT_DIR$/scripts/tmp.js" />
         <option value="$PROJECT_DIR$/main.js" />
       </list>
     </option>
@@ -165,6 +186,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -172,11 +194,20 @@
               <item name="rgti-pikado" type="b2602c69:ProjectViewProjectNode" />
               <item name="rgti-pikado" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="rgti-pikado" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rgti-pikado" type="462c0819:PsiDirectoryNode" />
+              <item name="obj" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="rgti-pikado" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rgti-pikado" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -184,6 +215,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -199,18 +232,21 @@
   </component>
   <component name="RunManager" selected="JavaScript Debug.seminar1.html (1)">
     <configuration name="04-3dobjects.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/webGL_tutorial/04-3dobjects.html" />
+    <configuration name="13-perfragment.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/rgti-pikado/13-perfragment.html" />
     <configuration name="seminar1.html (1)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/rgti-pikado/seminar1.html" />
     <configuration name="seminar1.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/webGL_tutorial/seminar1.html" />
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.04-3dobjects.html" />
       <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.seminar1.html" />
       <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.seminar1.html (1)" />
+      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.13-perfragment.html" />
     </list>
     <recent_temporary>
-      <list size="3">
+      <list size="4">
         <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.seminar1.html (1)" />
         <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.seminar1.html" />
-        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.04-3dobjects.html" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.13-perfragment.html" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.04-3dobjects.html" />
       </list>
     </recent_temporary>
   </component>
@@ -225,26 +261,28 @@
       <option name="presentableId" value="Default" />
       <updated>1511281936560</updated>
       <workItem from="1511281939685" duration="15233000" />
-      <workItem from="1511352780164" duration="357000" />
+      <workItem from="1511352780164" duration="3621000" />
+      <workItem from="1511380832005" duration="2268000" />
+      <workItem from="1511440497453" duration="2821000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15590000" />
+    <option name="totallyTimeSpent" value="23943000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24960339" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24960339" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284091" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24960339" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3284091" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39977974" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -280,23 +318,173 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/main.js</url>
-          <line>220</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/04-3dobjects.html">
+    <entry file="file://$PROJECT_DIR$/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4494">
+          <caret line="214" column="4" lean-forward="false" selection-start-line="214" selection-start-column="4" selection-end-line="214" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/13-perfragment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="39" lean-forward="false" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/13-perfragment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="26" lean-forward="false" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/10-doom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9177">
+          <caret line="437" column="39" lean-forward="false" selection-start-line="437" selection-start-column="39" selection-end-line="437" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/05-textures.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="40" column="17" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="40" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/05-textures.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7917">
+          <caret line="377" column="19" lean-forward="false" selection-start-line="377" selection-start-column="19" selection-end-line="377" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/11-mouse.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/11-mouse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10059">
+          <caret line="479" column="36" lean-forward="false" selection-start-line="479" selection-start-column="36" selection-end-line="479" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/seminar1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="n#script#1;n#head#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#2;n#head#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/13-perfragment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="39" lean-forward="false" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/13-perfragment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="26" lean-forward="false" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/10-doom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9177">
+          <caret line="437" column="39" lean-forward="false" selection-start-line="437" selection-start-column="39" selection-end-line="437" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/seminar1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="49" lean-forward="false" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
+          <folding>
+            <element signature="n#script#1;n#head#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#2;n#head#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/05-textures.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="40" column="17" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="40" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/04-3dobjects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4473">
+          <caret line="213" column="0" lean-forward="false" selection-start-line="213" selection-start-column="0" selection-end-line="215" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/05-textures.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7917">
+          <caret line="377" column="19" lean-forward="false" selection-start-line="377" selection-start-column="19" selection-end-line="377" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/11-mouse.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/11-mouse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10059">
+          <caret line="479" column="36" lean-forward="false" selection-start-line="479" selection-start-column="36" selection-end-line="479" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/04-3dobjects.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -352,15 +540,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
           <caret line="45" column="64" lean-forward="false" selection-start-line="45" selection-start-column="64" selection-end-line="45" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/04-3dobjects.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5325">
-          <caret line="213" column="0" lean-forward="false" selection-start-line="213" selection-start-column="0" selection-end-line="215" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -373,7 +552,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/05-textures.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1000">
+        <state relative-caret-position="840">
           <caret line="40" column="17" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="40" selection-end-column="17" />
           <folding />
         </state>
@@ -393,28 +572,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/13-perfragment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12348">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/13-perfragment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="21" column="39" lean-forward="true" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/05-textures.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9425">
-          <caret line="377" column="19" lean-forward="false" selection-start-line="377" selection-start-column="19" selection-end-line="377" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/11-mouse.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -425,7 +582,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/11-mouse.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11975">
+        <state relative-caret-position="10059">
           <caret line="479" column="36" lean-forward="false" selection-start-line="479" selection-start-column="36" selection-end-line="479" selection-end-column="36" />
           <folding />
         </state>
@@ -435,24 +592,79 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/10-doom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9177">
+          <caret line="437" column="39" lean-forward="false" selection-start-line="437" selection-start-column="39" selection-end-line="437" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dart_board.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="18" lean-forward="false" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/13-perfragment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1239">
+          <caret line="40" column="43" lean-forward="true" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/13-perfragment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2113">
+          <caret line="583" column="0" lean-forward="false" selection-start-line="583" selection-start-column="0" selection-end-line="584" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/tmp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="439" column="51" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="462" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/04-3dobjects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="171" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/05-textures.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="167" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/seminar1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="72275" column="0" lean-forward="false" selection-start-line="72275" selection-start-column="0" selection-end-line="72275" selection-end-column="0" />
+        <state relative-caret-position="399">
+          <caret line="73962" column="29" lean-forward="true" selection-start-line="73962" selection-start-column="29" selection-end-line="73962" selection-end-column="29" />
           <folding>
             <element signature="n#script#1;n#head#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#script#2;n#head#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="281" column="36" lean-forward="false" selection-start-line="281" selection-start-column="36" selection-end-line="281" selection-end-column="36" />
+        <state relative-caret-position="218">
+          <caret line="387" column="0" lean-forward="true" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
           <folding />
         </state>
       </provider>
