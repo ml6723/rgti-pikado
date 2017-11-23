@@ -17,6 +17,10 @@ var pMatrix = mat4.create();
 // Helper variables for storing current rotation of triangle and square
 var rotationTriangle = 0;
 var rotationSquare = 0;
+var distanceTriangle=0;
+var heightTriangle=0;
+var distanceSquare=0;
+var heightSquare=0;
 
 // Helper variable for animation
 var lastTime = 0;
