@@ -66,6 +66,7 @@ var zTarget = 82;
 // flag to print score
 var print_score = false;
 
+var total_score = 0;
 
 //
 // score sections points calculation
@@ -97,6 +98,10 @@ function collision_detection(zDart) {
 
 
 function calculate_score() {
+    var ctx = score_canvas.getContext("2d");
+    ctx.clearRect(0,0, score_canvas.width, score_canvas.height);
+
+
     var scores = [10 ,15 ,2 ,17 ,3 ,19 ,7 ,16 ,8 ,11 ,14 ,9 ,12 ,5 ,20 ,1 ,18 ,4 ,13, 6];
 
     var distance = Math.sqrt(Math.pow(xpuscice,2) + Math.pow(ypuscice+1.21999, 2));
@@ -126,10 +131,15 @@ function calculate_score() {
     var sc = String(result);
     var final_score = s.concat(sc);
 
-    var ctx = score_canvas.getContext("2d");
-    ctx.font = "30px Arial";
+    var t = "Total score: ";
+    total_score += result;
+    var total = t.concat(String(total_score));
+
+    ctx.font="30px Arial";
     ctx.fillStyle = "red";
-    ctx.fillText(final_score,10,50);}
+    ctx.fillText(final_score,10,50);
+    ctx.fillText(total,10,100);
+}
 
 function is_in_triangle (px,py,ax,ay,bx,by,cx,cy) {
     var v0 = [cx-ax,cy-ay];
@@ -561,6 +571,8 @@ function drawScene() {
     // Rotate dart before we draw.
     mat4.rotate(mvMatrix, degToRad(180), [1, 0, 0]);
     mat4.rotate(mvMatrix, degToRad(0), [0, 1, 0]);
+    mat4.rotate(mvMatrix, degToRad(0), [0, 1, 1]);
+
 
     //scale dart
     mat4.scale(mvMatrix, [3,3,3]);
@@ -568,7 +580,9 @@ function drawScene() {
     //met
     if(pause===false) {
         mat4.translate(mvMatrix, [xpuscice, ypuscice, zpuscice]);
-        if (zpuscice < 100) {
+        if (zpuscice < 20) {
+            if(zpuscice == 19.5)
+                print_score = true;
             zpuscice += 0.5;
             if (dif < a) {
                 ypuscice -= (0.001 * (a - dif));
