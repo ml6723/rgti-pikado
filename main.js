@@ -83,34 +83,11 @@ function collision_detection(zDart) {
         return false;
 }
 
-/*function calculate_score() {
-    var scores = [13, 4, 18, 1, 20,
-                5, 12, 9, 14, 11,
-                6, 10, 15, 2, 17,
-                3, 19, 7, 16, 8];
-    var sections = scores.length;
-    var final_angle = Math.atan2(ypuscice, xpuscice);
-    var final_deg = radToDeg(final_angle);
-    var landed_section = Math.floor(final_deg/(360.0/sections));
-
-    if(landed_section < 0)
-        landed_section = Math.abs(landed_section)+10;
-
-    var s = "Your score: ";
-    var sc = String(scores[landed_section]);
-    var final_score = s.concat(sc);
-
-    var ctx = score_canvas.getContext("2d");
-    ctx.font = "30px Arial";
-    ctx.fillStyle = "red";
-    ctx.fillText(final_score,10,50);
-
-}*/
 
 function calculate_score() {
     var scores = [10 ,15 ,2 ,17 ,3 ,19 ,7 ,16 ,8 ,11 ,14 ,9 ,12 ,5 ,20 ,1 ,18 ,4 ,13, 6];
 
-    distance = Math.sqrt(Math.pow(xpuscice,2) + Math.pow(ypuscice+1.21999, 2));
+    var distance = Math.sqrt(Math.pow(xpuscice,2) + Math.pow(ypuscice+1.21999, 2));
 
     var result;
 
@@ -121,8 +98,6 @@ function calculate_score() {
     else {
         for (i = 0; i < 20; i++) {
             if (is_in_triangle(xpuscice, ypuscice + 1.21999, 0, 0, sections_x[i], sections_y[i], sections_x[i + 1], sections_y[i + 1])) {
-                console.log("Found it")
-                console.log(i);
                 break;
             }
         }
