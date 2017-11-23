@@ -135,6 +135,8 @@ function calculate_score() {
     total_score += result;
     var total = t.concat(String(total_score));
 
+    //test
+
     ctx.font="30px Arial";
     ctx.fillStyle = "red";
     ctx.fillText(final_score,10,50);
