@@ -40,8 +40,8 @@ var zpuscice=0;
 var ypuscice=0;
 var xpuscice=0;
 //razdalje do tarce, nframeov
-var a=100;
-var dif2=0;
+var a=50;
+var dif2=a;
 var dif=0;
 /**metpuscice
 mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
@@ -56,6 +56,43 @@ if(zpuscice<40){
     dif++;
 }
 **/
+
+function handleKeys() {
+  /*
+    if (currentlyPressedKeys[33]) {
+        // Page Up
+        positionCubeZ -= 0.05;
+    }
+    if (currentlyPressedKeys[34]) {
+        // Page Down
+        positionCubeZ += 0.05;
+    }
+    */
+    if (currentlyPressedKeys[37]) {
+        // Left cursor key
+        ypuscice -= 0.01;
+    }
+    if (currentlyPressedKeys[39]) {
+        // Right cursor key
+        ypuscice += 1;
+    }
+    if (currentlyPressedKeys[38]) {
+        // Up cursor key
+        xpuscice -= 1;
+    }
+    if (currentlyPressedKeys[40]) {
+        // Down cursor key
+        xpuscice += 1;
+    }
+    if (currentlyPressedKeys[32]) {
+        // Space Key
+        dartThrow;
+    }
+}
+
+function dartThrow() {
+    //TODO
+}
 
 // Matrix utility functions
 //
@@ -204,6 +241,8 @@ function initShaders() {
 //
 // Set the uniform values in shaders for model-view and projection matrix.
 //
+
+
 function setMatrixUniforms() {
     gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
     gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
@@ -344,6 +383,7 @@ function initBuffers() {
 //
 // Draw the scene.
 //
+
 function drawScene() {
     // set the rendering environment to full canvas size
     gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
@@ -372,6 +412,18 @@ function drawScene() {
     // Rotate target before we draw.
     mat4.rotate(mvMatrix, degToRad(180), [1, 0, 0]);
     mat4.rotate(mvMatrix, degToRad(0), [0, 1, 0]);
+
+    mat4.translate(mvMatrix,[xpuscice,ypuscice,zpuscice]);
+    if(zpuscice<100){
+        zpuscice+=0.5;
+        if (dif<a){
+            ypuscice-=(0.001*(a-dif));
+        }else{
+            ypuscice+=(0.001*(a-dif2));
+            dif2--;
+        }
+        dif++;
+    }
 
 
     // Draw the cube by binding the array buffer to the cube's vertices
