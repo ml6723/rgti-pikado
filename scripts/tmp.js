@@ -35,28 +35,7 @@ var texturesLoaded = 0;
 // Helper variable for animation
 var lastTime = 0;
 
-//koordinate puscice
-var zpuscice=0;
-var ypuscice=0;
-var xpuscice=0;
-//razdalje do tarce, nframeov
-var a=100;
-var dif2=0;
-var dif=0;
-/**metpuscice
-mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
-if(zpuscice<40){
-    zpuscice+=0.2;
-    if (dif<a){
-        ypuscice+=(0.001*(a-dif));
-    }else{
-        ypuscice-=(0.1*(a-dif2));
-        dif--;
-    }
-    dif++;
-}
-**/
-
+//
 // Matrix utility functions
 //
 // mvPush   ... push current matrix on matrix stack
@@ -184,19 +163,17 @@ function initShaders() {
     // turn on vertex position attribute at specified position
     gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
 
-    // store location of aTextureCoord variable defined in shader
-    shaderProgram.textureCoordAttribute = gl.getAttribLocation(shaderProgram, "aTextureCoord");
+    // store location of aVertexColor variable defined in shader
+    shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aVertexColor");
 
-    // turn on vertex texture coordinates attribute at specified position
-    gl.enableVertexAttribArray(shaderProgram.textureCoordAttribute);
+    // turn on vertex color attribute at specified position
+    gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
 
     // store location of uPMatrix variable defined in shader - projection matrix
     shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
+
     // store location of uMVMatrix variable defined in shader - model-view matrix
     shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
-
-    // store location of uSampler variable defined in shader
-    shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
 }
 
 //
@@ -205,8 +182,13 @@ function initShaders() {
 // Set the uniform values in shaders for model-view and projection matrix.
 //
 function setMatrixUniforms() {
-    gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
-    gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
+    gl.uniformMatrix4fv(currentProgram.pMatrixUniform, false, pMatrix);
+    gl.uniformMatrix4fv(currentProgram.mvMatrixUniform, false, mvMatrix);
+
+    var normalMatrix = mat3.create();
+    mat4.toInverseMat3(mvMatrix, normalMatrix);
+    mat3.transpose(normalMatrix);
+    gl.uniformMatrix3fv(currentProgram.nMatrixUniform, false, normalMatrix);
 }
 
 //
@@ -362,6 +344,7 @@ function drawScene() {
 
     // Now move the drawing position a bit to where we want to start
     // drawing the cube.
+    //mat4.translate(mvMatrix, [2.0, 0.0, -15]);
 
     // store current location
     mvPushMatrix();
@@ -373,6 +356,10 @@ function drawScene() {
     mat4.rotate(mvMatrix, degToRad(180), [1, 0, 0]);
     mat4.rotate(mvMatrix, degToRad(0), [0, 1, 0]);
 
+/*
+    mat4.rotate(mvMatrix, degToRad(0), [1, 0, 0]);
+    mat4.rotate(mvMatrix, degToRad(180), [0, 1, 0]);
+    mat4.rotate(mvMatrix, degToRad(0), [0, 0, 1]);*/
 
     // Draw the cube by binding the array buffer to the cube's vertices
     // array, setting attributes, and pushing it to GL.
@@ -399,7 +386,7 @@ function drawScene() {
     mvPushMatrix();
 
     // translate the target
-    mat4.translate(mvMatrix, [2.0, 0.0, -90]);
+    mat4.translate(mvMatrix, [2.0, 0.0, -15]);
 
 
     // Rotate target before we draw.
@@ -407,8 +394,10 @@ function drawScene() {
     mat4.rotate(mvMatrix, degToRad(180), [0, 1, 0]);
     mat4.rotate(mvMatrix, degToRad(0), [0, 0, 1]);
 
-    //scale target
-    mat4.scale(mvMatrix, [10,10,10]);
+    /*
+        mat4.rotate(mvMatrix, degToRad(0), [1, 0, 0]);
+        mat4.rotate(mvMatrix, degToRad(180), [0, 1, 0]);
+        mat4.rotate(mvMatrix, degToRad(0), [0, 0, 1]);*/
 
     // Draw the cube by binding the array buffer to the cube's vertices
     // array, setting attributes, and pushing it to GL.
@@ -433,23 +422,6 @@ function drawScene() {
 
 
 }
-
-/*//
-// animate
-//
-// Called every time before redeawing the screen.
-//
-function animate() {
-    var timeNow = new Date().getTime();
-    if (lastTime != 0) {
-        var elapsed = timeNow - lastTime;
-
-        // rotate pyramid and cube for a small amount
-        rotationPyramid += (90 * elapsed) / 1000.0;
-        rotationCube += (75 * elapsed) / 1000.0;
-    }
-    lastTime = timeNow;
-}*/
 
 //
 // start
@@ -482,6 +454,7 @@ function start() {
         // Set up to draw the scene periodically.
         setInterval(function() {
             if(texturesLoaded == numberOfTextures) {
+                requestAnimationFrame(animate);
                 drawScene();
             }
         }, 15);
