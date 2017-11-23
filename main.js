@@ -36,13 +36,13 @@ var texturesLoaded = 0;
 // Helper variable for animation
 var lastTime = 0;
 
-<<<<<<< HEAD
+
 //tipke
 var currentlyPressedKeys = {};
-=======
+
 // target radius
 var radius = 2.2;
->>>>>>> 727fa1bbfc1b69025e54834c9f6ca827d1d68e57
+
 
 //koordinate puscice
 var zpuscice=0;
@@ -52,13 +52,13 @@ var xpuscice=1.2;
 var a=50;
 var dif2=a;
 var dif=0;
-<<<<<<< HEAD
+
 //zacni/koncaj animacijo
 var reset=false;
 var pause=true;
 /**metpuscice
 mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
-=======
+**/
 
 //koordinate tarce
 var zTarget = 82;
@@ -179,7 +179,7 @@ function is_in_triangle (px,py,ax,ay,bx,by,cx,cy) {
 
 //metpuscice
 /*mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
->>>>>>> 727fa1bbfc1b69025e54834c9f6ca827d1d68e57
+
 if(zpuscice<40){
     zpuscice+=0.2;
     if (dif<a){
@@ -593,7 +593,7 @@ function drawScene() {
     //met
     if(pause===false) {
         mat4.translate(mvMatrix, [xpuscice, ypuscice, zpuscice]);
-        if (zpuscice < 50) {
+        if (zpuscice < 100) {
             zpuscice += 0.5;
             if (dif < a) {
                 ypuscice -= (0.001 * (a - dif));
