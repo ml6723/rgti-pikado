@@ -1,5 +1,6 @@
 // Global variable definitionvar canvas;
 var canvas;
+var score_canvas = document.getElementById("score");
 var gl;
 var dart;
 var target;
@@ -35,16 +36,137 @@ var texturesLoaded = 0;
 // Helper variable for animation
 var lastTime = 0;
 
+// target radius
+var radius = 2.2;
+
 //koordinate puscice
 var zpuscice=0;
 var ypuscice=0;
-var xpuscice=0;
+var xpuscice=1.2;
 //razdalje do tarce, nframeov
-var a=100;
-var dif2=0;
+var a=50;
+var dif2=a;
 var dif=0;
-/**metpuscice
-mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
+
+//koordinate tarce
+var zTarget = 82;
+
+// flag to print score
+var print_score = false;
+
+
+//
+// score sections points calculation
+//
+var sections_x = [];
+var sections_y = [];
+
+var angle = 9;
+
+for(var i=0; i<20; i++) {
+    sections_x[i] = radius * Math.cos(degToRad(angle));
+    sections_y[i] = 0 + radius * Math.sin(degToRad(angle));
+
+    angle += 18;
+}
+
+sections_x[20] = sections_x[0];
+sections_y[20] = sections_y[0];
+
+//
+//
+
+function collision_detection(zDart) {
+    if(zDart >= zTarget)
+        return true;
+    else
+        return false;
+}
+
+/*function calculate_score() {
+    var scores = [13, 4, 18, 1, 20,
+                5, 12, 9, 14, 11,
+                6, 10, 15, 2, 17,
+                3, 19, 7, 16, 8];
+    var sections = scores.length;
+    var final_angle = Math.atan2(ypuscice, xpuscice);
+    var final_deg = radToDeg(final_angle);
+    var landed_section = Math.floor(final_deg/(360.0/sections));
+
+    if(landed_section < 0)
+        landed_section = Math.abs(landed_section)+10;
+
+    var s = "Your score: ";
+    var sc = String(scores[landed_section]);
+    var final_score = s.concat(sc);
+
+    var ctx = score_canvas.getContext("2d");
+    ctx.font = "30px Arial";
+    ctx.fillStyle = "red";
+    ctx.fillText(final_score,10,50);
+
+}*/
+
+function calculate_score() {
+    var scores = [10 ,15 ,2 ,17 ,3 ,19 ,7 ,16 ,8 ,11 ,14 ,9 ,12 ,5 ,20 ,1 ,18 ,4 ,13, 6];
+
+    distance = Math.sqrt(Math.pow(xpuscice,2) + Math.pow(ypuscice+1.21999, 2));
+
+    var result;
+
+    if(distance < 0.04)
+        result = 50;
+    else if((distance >= 0.04) && (distance <= 0.12))
+        result = 25;
+    else {
+        for (i = 0; i < 20; i++) {
+            if (is_in_triangle(xpuscice, ypuscice + 1.21999, 0, 0, sections_x[i], sections_y[i], sections_x[i + 1], sections_y[i + 1])) {
+                console.log("Found it")
+                console.log(i);
+                break;
+            }
+        }
+
+        result = scores[i];
+
+        if((distance >= 1.89) && (distance <= 1.99))
+            result *= 2;
+        else if((distance >= 1.13) && (distance <= 1.23))
+            result *= 3;
+    }
+
+    var s = "Your score: ";
+    var sc = String(result);
+    var final_score = s.concat(sc);
+
+    var ctx = score_canvas.getContext("2d");
+    ctx.font = "30px Arial";
+    ctx.fillStyle = "red";
+    ctx.fillText(final_score,10,50);}
+
+function is_in_triangle (px,py,ax,ay,bx,by,cx,cy) {
+    var v0 = [cx-ax,cy-ay];
+    var v1 = [bx-ax,by-ay];
+    var v2 = [px-ax,py-ay];
+
+    var dot00 = (v0[0]*v0[0]) + (v0[1]*v0[1]);
+    var dot01 = (v0[0]*v1[0]) + (v0[1]*v1[1]);
+    var dot02 = (v0[0]*v2[0]) + (v0[1]*v2[1]);
+    var dot11 = (v1[0]*v1[0]) + (v1[1]*v1[1]);
+    var dot12 = (v1[0]*v2[0]) + (v1[1]*v2[1]);
+
+    var invDenom = 1/ (dot00 * dot11 - dot01 * dot01);
+
+    var u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+    var v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+
+    return ((u >= 0) && (v >= 0) && (u + v < 1));
+}
+
+
+
+//metpuscice
+/*mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
 if(zpuscice<40){
     zpuscice+=0.2;
     if (dif<a){
@@ -54,8 +176,10 @@ if(zpuscice<40){
         dif--;
     }
     dif++;
-}
-**/
+}*/
+
+
+
 
 // Matrix utility functions
 //
@@ -78,6 +202,10 @@ function mvPopMatrix() {
 
 function degToRad(degrees) {
     return degrees * Math.PI / 180;
+}
+
+function radToDeg(radians) {
+    return radians * 180 / Math.PI;
 }
 
 //
@@ -367,11 +495,38 @@ function drawScene() {
     mvPushMatrix();
 
     // translate the dart
-    mat4.translate(mvMatrix, [5.0, 0.0, -8]);
+    mat4.translate(mvMatrix, [10.0, 0.0, -20]);
 
-    // Rotate target before we draw.
+    // Rotate dart before we draw.
     mat4.rotate(mvMatrix, degToRad(180), [1, 0, 0]);
     mat4.rotate(mvMatrix, degToRad(0), [0, 1, 0]);
+
+    //scale dart
+    mat4.scale(mvMatrix, [3,3,3]);
+
+    //met
+    mat4.translate(mvMatrix,[xpuscice,ypuscice,zpuscice]);
+    if(zpuscice<20){
+        if(zpuscice == 19.5)
+            print_score = true;
+
+        zpuscice+=0.5;
+        if (dif<a){
+            ypuscice-=(0.001*(a-dif));
+        }else{
+            ypuscice+=(0.001*(a-dif2));
+            dif2--;
+        }
+        dif++;
+    }
+
+    if(print_score == true) {
+        calculate_score();
+        print_score = false;
+    }
+
+
+
 
 
     // Draw the cube by binding the array buffer to the cube's vertices
@@ -399,13 +554,13 @@ function drawScene() {
     mvPushMatrix();
 
     // translate the target
-    mat4.translate(mvMatrix, [2.0, 0.0, -90]);
+    mat4.translate(mvMatrix, [-12.0, 3.1, -100]);
 
 
     // Rotate target before we draw.
     mat4.rotate(mvMatrix, degToRad(0), [1, 0, 0]);
     mat4.rotate(mvMatrix, degToRad(180), [0, 1, 0]);
-    mat4.rotate(mvMatrix, degToRad(0), [0, 0, 1]);
+    mat4.rotate(mvMatrix, degToRad(33), [0, 0, 1]);
 
     //scale target
     mat4.scale(mvMatrix, [10,10,10]);
