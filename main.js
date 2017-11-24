@@ -43,6 +43,11 @@ var currentlyPressedKeys = {};
 // target radius
 var radius = 2.2;
 
+//moc meta
+var moc=50;
+var MAXHEIGHT=200;
+var MINHEIGHT=-100;
+
 
 //koordinate puscice
 var zpuscice=0;
@@ -66,6 +71,7 @@ var zTarget = 82;
 // flag to print score
 var print_score = false;
 
+var total_score = 0;
 
 //
 // score sections points calculation
@@ -95,34 +101,15 @@ function collision_detection(zDart) {
         return false;
 }
 
-/*function calculate_score() {
-    var scores = [13, 4, 18, 1, 20,
-                5, 12, 9, 14, 11,
-                6, 10, 15, 2, 17,
-                3, 19, 7, 16, 8];
-    var sections = scores.length;
-    var final_angle = Math.atan2(ypuscice, xpuscice);
-    var final_deg = radToDeg(final_angle);
-    var landed_section = Math.floor(final_deg/(360.0/sections));
-
-    if(landed_section < 0)
-        landed_section = Math.abs(landed_section)+10;
-
-    var s = "Your score: ";
-    var sc = String(scores[landed_section]);
-    var final_score = s.concat(sc);
-
-    var ctx = score_canvas.getContext("2d");
-    ctx.font = "30px Arial";
-    ctx.fillStyle = "red";
-    ctx.fillText(final_score,10,50);
-
-}*/
 
 function calculate_score() {
+    var ctx = score_canvas.getContext("2d");
+    ctx.clearRect(0,0, score_canvas.width, score_canvas.height);
+
+
     var scores = [10 ,15 ,2 ,17 ,3 ,19 ,7 ,16 ,8 ,11 ,14 ,9 ,12 ,5 ,20 ,1 ,18 ,4 ,13, 6];
 
-    distance = Math.sqrt(Math.pow(xpuscice,2) + Math.pow(ypuscice+1.21999, 2));
+    var distance = Math.sqrt(Math.pow(xpuscice,2) + Math.pow(ypuscice+1.21999, 2));
 
     var result;
 
@@ -133,8 +120,6 @@ function calculate_score() {
     else {
         for (i = 0; i < 20; i++) {
             if (is_in_triangle(xpuscice, ypuscice + 1.21999, 0, 0, sections_x[i], sections_y[i], sections_x[i + 1], sections_y[i + 1])) {
-                console.log("Found it")
-                console.log(i);
                 break;
             }
         }
@@ -151,10 +136,17 @@ function calculate_score() {
     var sc = String(result);
     var final_score = s.concat(sc);
 
-    var ctx = score_canvas.getContext("2d");
-    ctx.font = "30px Arial";
+    var t = "Total score: ";
+    total_score += result;
+    var total = t.concat(String(total_score));
+
+    //test
+
+    ctx.font="30px Arial";
     ctx.fillStyle = "red";
-    ctx.fillText(final_score,10,50);}
+    ctx.fillText(final_score,10,50);
+    ctx.fillText(total,10,100);
+}
 
 function is_in_triangle (px,py,ax,ay,bx,by,cx,cy) {
     var v0 = [cx-ax,cy-ay];
@@ -222,6 +214,18 @@ function handleKeys() {
             // Down cursor key
             ypuscice += 0.01;
         }
+        if (currentlyPressedKeys[77]) {
+            // M
+            if (moc < MAXHEIGHT) {
+                moc+=0.5;
+            }
+        }
+        if (currentlyPressedKeys[78]) {
+            // N
+            if (moc > MINHEIGHT) {
+                moc-=0.5;
+            }
+        }
     }
     if (currentlyPressedKeys[32]) {
         // Space Key
@@ -231,16 +235,22 @@ function handleKeys() {
     if (currentlyPressedKeys[13]) {
         // enter ---reset
         zpuscice=0;
-        ypuscice=0;
-        xpuscice=0;
+        ypuscice=getRandomfloat(-0.4,0.1);
+        xpuscice=getRandomfloat(-0.4,0.1);
         a=50;
         dif2=a;
         dif=0;
+        moc=50;
         pause=true;
         reset=true;
         //initBuffers();
     }
 }
+
+function getRandomfloat(min, max) {
+    return Math.random() * (max - min + 0.1) + min;
+}
+
 
 function handleKeyDown(event) {
     // storing the pressed state for individual key
@@ -586,17 +596,27 @@ function drawScene() {
     // Rotate dart before we draw.
     mat4.rotate(mvMatrix, degToRad(180), [1, 0, 0]);
     mat4.rotate(mvMatrix, degToRad(0), [0, 1, 0]);
+    mat4.rotate(mvMatrix, degToRad(0), [0, 1, 1]);
+
 
     //scale dart
     mat4.scale(mvMatrix, [3,3,3]);
 
+    document.getElementById("mocMeta").innerHTML=moc;
+    //mocdisplay=moc;
+
+
+
     //met
     if(pause===false) {
         mat4.translate(mvMatrix, [xpuscice, ypuscice, zpuscice]);
-        if (zpuscice < zTarget) {
+        if (zpuscice < 20) {
+            if(zpuscice == 19.5)
+                print_score = true;
+
             zpuscice += 0.5;
             if (dif < a) {
-                ypuscice -= (0.001 * (a - dif));
+                ypuscice -= (0.001 * (moc - dif));
             } else {
                 ypuscice += (0.001 * (a - dif2));
                 dif2--;
@@ -699,6 +719,7 @@ function animate() {
 //
 // Called when the canvas is created to get the ball rolling.
 //
+
 function start() {
     canvas = document.getElementById("glcanvas");
 
