@@ -7,7 +7,6 @@
 
 // Global variable definitionvar canvas;
 var canvas;
-var score_canvas = document.getElementById("score");
 var gl;
 var dart;
 var target;
@@ -50,7 +49,6 @@ var beer3VertexBuffer;
 var beer3TextureBuffer;
 var beer3NormalBuffer;
 var beer3IndexBuffer;
-
 
 
 
@@ -141,6 +139,8 @@ function collision_detection(zDart) {
 
 
 function calculate_score() {
+    document.getElementById("score3").innerHTML="";
+
     var scores = [10 ,15 ,2 ,17 ,3 ,19 ,7 ,16 ,8 ,11 ,14 ,9 ,12 ,5 ,20 ,1 ,18 ,4 ,13, 6];
 
     var distance = Math.sqrt(Math.pow(xpuscice,2) + Math.pow(ypuscice+1.21999, 2));
@@ -182,7 +182,7 @@ function calculate_score() {
         total_score += result;
         total = "You scored too many"
 
-        document.getElementById("score2").innerHTML="You scored too many points. Throw again. you need "+total_score+" more points."
+        document.getElementById("score2").innerHTML="You scored too many points. Throw again. you need "+total_score+" more point(s)."
     } else if(total_score === 0) {
         t = "Total score: ";
         total = t.concat(String(total_score));
