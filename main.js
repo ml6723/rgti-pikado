@@ -90,11 +90,6 @@ var reset=false;
 var pause=true;
 var pressed=false;
 var end=false;
-/**metpuscice
-mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
-**/
-
-
 
 // flag to print score
 var print_score = false;
@@ -166,11 +161,14 @@ function calculate_score() {
     var s = "Your score: ";
     var sc = String(result);
     var final_score = s.concat(sc);
-    document.getElementById("score1").innerHTML="Your score: "+result;
-    total_score -= result;
-    var t;
-    var total;
-
+    if(isNaN(result)){
+        document.getElementById("score1").innerHTML="You missed! Try again.";
+    }else{
+        document.getElementById("score1").innerHTML="Your score: "+result;
+        total_score -= result;
+        var t;
+        var total;
+    }
 
     if(total_score < 0) {
         total_score += result;
@@ -217,36 +215,8 @@ function is_in_triangle (px,py,ax,ay,bx,by,cx,cy) {
     return ((u >= 0) && (v >= 0) && (u + v < 1));
 }
 
-
-
-//metpuscice
-/*mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
-
-if(zpuscice<40){
-    zpuscice+=0.2;
-    if (dif<a){
-        ypuscice+=(0.001*(a-dif));
-    }else{
-        ypuscice-=(0.1*(a-dif2));
-        dif--;
-    }
-    dif++;
-}*/
-
-
-
-
 function handleKeys() {
-  /*
-    if (currentlyPressedKeys[33]) {
-        // Page Up
-        positionCubeZ -= 0.05;
-    }
-    if (currentlyPressedKeys[34]) {
-        // Page Down
-        positionCubeZ += 0.05;
-    }
-    */
+
     if(pause===true) {
         if (currentlyPressedKeys[37]) {
             // Left cursor key
@@ -325,10 +295,6 @@ function handleKeyDown(event) {
 function handleKeyUp(event) {
     // reseting the pressed state for individual key
     currentlyPressedKeys[event.keyCode] = false;
-}
-
-function dartThrow() {
-    //TODO
 }
 
 // Matrix utility functions
