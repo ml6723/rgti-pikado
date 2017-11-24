@@ -131,10 +131,6 @@ function collision_detection(zDart) {
 
 
 function calculate_score() {
-    var ctx = score_canvas.getContext("2d");
-    ctx.clearRect(0,0, score_canvas.width, score_canvas.height);
-
-
     var scores = [10 ,15 ,2 ,17 ,3 ,19 ,7 ,16 ,8 ,11 ,14 ,9 ,12 ,5 ,20 ,1 ,18 ,4 ,13, 6];
 
     var distance = Math.sqrt(Math.pow(xpuscice,2) + Math.pow(ypuscice+1.21999, 2));
@@ -160,9 +156,6 @@ function calculate_score() {
             result *= 3;
     }
 
-    ctx.font="30px Arial";
-    ctx.fillStyle = "red";
-
     var s = "Your score: ";
     var sc = String(result);
     var final_score = s.concat(sc);
@@ -175,7 +168,6 @@ function calculate_score() {
     if(total_score < 0) {
         total_score += result;
         total = "You scored too many"
-        ctx.fillText(" points. Throw again.", 10, 130);
 
         document.getElementById("score2").innerHTML="You scored too many points. Throw again. you need "+total_score+" more points."
     } else if(total_score === 0) {
@@ -183,19 +175,12 @@ function calculate_score() {
         total = t.concat(String(total_score));
         document.getElementById("score2").innerHTML="Total score: "+total_score;
         end=true;
-        ctx.fillText("You won!",80,130);
         document.getElementById("score3").innerHTML="You won!";
     } else {
         t = "Total score: ";
         total = t.concat(String(total_score));
         document.getElementById("score2").innerHTML="Total score: "+total_score;
     }
-
-    //test
-
-
-    ctx.fillText(final_score,10,30);
-    ctx.fillText(total,10,80);
 }
 
 function is_in_triangle (px,py,ax,ay,bx,by,cx,cy) {
