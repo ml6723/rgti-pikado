@@ -634,7 +634,7 @@ function drawScene() {
     //scale dart
     mat4.scale(mvMatrix, [3,3,3]);
 
-    document.getElementById("mocMeta").innerHTML="Moc meta: "+moc;
+    document.getElementById("mocMeta").innerHTML="Throw strength: "+moc;
     //mocdisplay=moc;
 
 
