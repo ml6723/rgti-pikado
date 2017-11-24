@@ -80,6 +80,7 @@ var dif=0;
 var reset=false;
 var pause=true;
 var pressed=false;
+var end=false;
 /**metpuscice
 mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
 **/
@@ -156,22 +157,29 @@ function calculate_score() {
     var s = "Your score: ";
     var sc = String(result);
     var final_score = s.concat(sc);
-
+    document.getElementById("score1").innerHTML="Your score: "+result;
     total_score -= result;
     var t;
     var total;
 
 
     if(total_score < 0) {
+        total_score += result;
         total = "You scored too many"
         ctx.fillText(" points. Throw again.", 10, 130);
-    } else if(total_score == 0) {
+
+        document.getElementById("score2").innerHTML="You scored too many points. Throw again. you need "+total_score+" more points."
+    } else if(total_score === 0) {
         t = "Total score: ";
         total = t.concat(String(total_score));
+        document.getElementById("score2").innerHTML="Total score: "+total_score;
+        end=true;
         ctx.fillText("You won!",80,130);
+        document.getElementById("score3").innerHTML="You won!";
     } else {
         t = "Total score: ";
         total = t.concat(String(total_score));
+        document.getElementById("score2").innerHTML="Total score: "+total_score;
     }
 
     //test
@@ -273,6 +281,7 @@ function handleKeys() {
         }
         pressed = true;
         setTimeout(function() { pressed = false }, 1000);
+        if(end===true){total_score=301;}
         zpuscice=0;
         ypuscice=getRandomfloat(-0.4,0.1);
         xpuscice=getRandomfloat(-0.4,0.1);
