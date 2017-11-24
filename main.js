@@ -11,6 +11,8 @@ var score_canvas = document.getElementById("score");
 var gl;
 var dart;
 var target;
+var table;
+var beer;
 
 // shading programs
 var shaderProgram;
@@ -32,6 +34,11 @@ var tableTextureBuffer;
 var tableNormalBuffer;
 var tableIndexBuffer;
 
+var beerVertexBuffer;
+var beerTextureBuffer;
+var beerNormalBuffer;
+var beerIndexBuffer;
+
 
 
 
@@ -43,9 +50,11 @@ var pMatrix = mat4.create();
 // Variable for storing textures
 var dartTexture;
 var targetTexture;
+var tableTexture;
+var beerTexture;
 
 // Variable that stores  loading state of textures.
-var numberOfTextures = 2;
+var numberOfTextures = 4;
 var texturesLoaded = 0;
 
 // Helper variable for animation
@@ -485,6 +494,20 @@ function initTextures() {
         handleTextureLoaded(targetTexture);
     };  // async loading
     targetTexture.image.src = "target.jpg";
+
+    tableTexture = gl.createTexture();
+    tableTexture.image = new Image();
+    tableTexture.image.onload = function() {
+        handleTextureLoaded(tableTexture);
+    };  // async loading
+    tableTexture.image.src = "table.jpg";
+
+    beerTexture = gl.createTexture();
+    beerTexture.image = new Image();
+    beerTexture.image.onload = function() {
+        handleTextureLoaded(beerTexture);
+    };  // async loading
+    beerTexture.image.src = "green.jpg";
 }
 
 function handleTextureLoaded(texture) {
@@ -592,6 +615,89 @@ function initBuffers() {
     targetIndexBuffer.itemSize = target.indexBuffer.itemSize;
     targetIndexBuffer.numItems = target.indexBuffer.numItems;
 
+
+    // TABLE
+
+    var objStr_tab = document.getElementById('table.obj').innerHTML;
+
+    table = new OBJ.Mesh(objStr_tab);
+
+    OBJ.initMeshBuffers(gl, table);
+
+    // Create a buffer for the dart's vertices.
+    tableVertexBuffer = table.vertexBuffer;
+
+    // Select the dartVertexBuffer as the one to apply vertex
+    // operations to from here out.
+    gl.bindBuffer(gl.ARRAY_BUFFER, tableVertexBuffer);
+
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(table.vertices), gl.STATIC_DRAW);
+
+    tableVertexBuffer.itemSize = table.vertexBuffer.itemSize;
+    tableVertexBuffer.numItems = table.vertexBuffer.numItems;
+
+
+    // Map the texture onto the table's faces.
+    tableTextureBuffer = table.textureBuffer;
+    gl.bindBuffer(gl.ARRAY_BUFFER, tableTextureBuffer);
+
+
+    // Pass the texture coordinates into WebGL
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(table.textures), gl.STATIC_DRAW);
+    tableTextureBuffer.itemSize = table.textureBuffer.itemSize;
+    tableTextureBuffer.numItems = table.textureBuffer.numItems;
+
+    // Build the element array buffer; this specifies the indices
+    // into the vertex array for each face's vertices.
+    tableIndexBuffer = table.indexBuffer;
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, tableIndexBuffer);
+
+    // Now send the element array to GL
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(table.indices), gl.STATIC_DRAW);
+    tableIndexBuffer.itemSize = table.indexBuffer.itemSize;
+    tableIndexBuffer.numItems = table.indexBuffer.numItems;
+
+    // BEER
+
+    var objStr_b = document.getElementById('beer.obj').innerHTML;
+
+    beer = new OBJ.Mesh(objStr_b);
+
+    OBJ.initMeshBuffers(gl, beer);
+
+    // Create a buffer for the dart's vertices.
+    beerVertexBuffer = beer.vertexBuffer;
+
+    // Select the dartVertexBuffer as the one to apply vertex
+    // operations to from here out.
+    gl.bindBuffer(gl.ARRAY_BUFFER, beerVertexBuffer);
+
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(beer.vertices), gl.STATIC_DRAW);
+
+    beerVertexBuffer.itemSize = beer.vertexBuffer.itemSize;
+    beerVertexBuffer.numItems = beer.vertexBuffer.numItems;
+
+
+    // Map the texture onto the table's faces.
+    beerTextureBuffer = beer.textureBuffer;
+    gl.bindBuffer(gl.ARRAY_BUFFER, beerTextureBuffer);
+
+
+    // Pass the texture coordinates into WebGL
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(beer.textures), gl.STATIC_DRAW);
+    beerTextureBuffer.itemSize = beer.textureBuffer.itemSize;
+    beerTextureBuffer.numItems = beer.textureBuffer.numItems;
+
+    // Build the element array buffer; this specifies the indices
+    // into the vertex array for each face's vertices.
+    beerIndexBuffer = beer.indexBuffer;
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, beerIndexBuffer);
+
+    // Now send the element array to GL
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(beer.indices), gl.STATIC_DRAW);
+    beerIndexBuffer.itemSize = beer.indexBuffer.itemSize;
+    beerIndexBuffer.numItems = beer.indexBuffer.numItems;
+
 }
 
 //
@@ -610,7 +716,7 @@ function drawScene() {
     // scene. Our field of view is 45 degrees, with a width/height
     // ratio and we only want to see objects between 0.1 units
     // and 100 units away from the camera.
-    mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
+    mat4.perspective(43, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
 
     // Set the drawing position to the "identity" point, which is
     // the center of the scene.
@@ -717,12 +823,87 @@ function drawScene() {
     gl.bindTexture(gl.TEXTURE_2D, targetTexture);
     gl.uniform1i(shaderProgram.samplerUniform, 0);
 
-    // Draw the cube.
+    // Draw the target.
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, targetIndexBuffer);
     setMatrixUniforms();
     gl.drawElements(gl.TRIANGLES, targetIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
 
     mvPopMatrix();
+
+    // store current location
+    mvPushMatrix();
+
+    // translate the table
+    mat4.translate(mvMatrix, [20.0, -19.0, -35]);
+
+
+    // Rotate table before we draw.
+    mat4.rotate(mvMatrix, degToRad(0), [1, 0, 0]);
+    mat4.rotate(mvMatrix, degToRad(270), [0, 1, 0]);
+    mat4.rotate(mvMatrix, degToRad(0), [0, 0, 1]);
+
+    //scale table
+    mat4.scale(mvMatrix, [0.3,0.3,0.3]);
+
+    // Draw the table by binding the array buffer to the table's vertices
+    // array, setting attributes, and pushing it to GL.
+    gl.bindBuffer(gl.ARRAY_BUFFER, tableVertexBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, tableVertexBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+    // Set the texture coordinates attribute for the vertices.
+    gl.bindBuffer(gl.ARRAY_BUFFER, tableTextureBuffer);
+    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, tableTextureBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+    // Specify the texture to map onto the faces.
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, tableTexture);
+    gl.uniform1i(shaderProgram.samplerUniform, 0);
+
+    // Draw the table.
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, tableIndexBuffer);
+    setMatrixUniforms();
+    gl.drawElements(gl.TRIANGLES, tableIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
+
+    mvPopMatrix();
+
+    // BEER
+
+    // store current location
+    mvPushMatrix();
+
+    // translate the table
+    mat4.translate(mvMatrix, [15.0, -6.0, -30]);
+
+
+    // Rotate table before we draw.
+    mat4.rotate(mvMatrix, degToRad(0), [1, 0, 0]);
+    mat4.rotate(mvMatrix, degToRad(0), [0, 1, 0]);
+    mat4.rotate(mvMatrix, degToRad(0), [0, 0, 1]);
+
+    //scale table
+    mat4.scale(mvMatrix, [0.05,0.05,0.05]);
+
+    // Draw the table by binding the array buffer to the table's vertices
+    // array, setting attributes, and pushing it to GL.
+    gl.bindBuffer(gl.ARRAY_BUFFER, beerVertexBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, beerVertexBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+    // Set the texture coordinates attribute for the vertices.
+    gl.bindBuffer(gl.ARRAY_BUFFER, beerTextureBuffer);
+    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, beerTextureBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+    // Specify the texture to map onto the faces.
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, beerTexture);
+    gl.uniform1i(shaderProgram.samplerUniform, 0);
+
+    // Draw the table.
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, beerIndexBuffer);
+    setMatrixUniforms();
+    gl.drawElements(gl.TRIANGLES, beerIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
+
+    mvPopMatrix();
+
 
 
 }
