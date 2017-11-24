@@ -88,6 +88,7 @@ var dif=0;
 //zacni/koncaj animacijo
 var reset=false;
 var pause=true;
+var pressed=false;
 /**metpuscice
 mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
 **/
@@ -275,6 +276,12 @@ function handleKeys() {
     }
     if (currentlyPressedKeys[13]) {
         // enter ---reset
+        if( pressed === true ) { //Already pressed don't allow another press
+            //alert("Please wait 5 seconds between key presses");
+            return false;
+        }
+        pressed = true;
+        setTimeout(function() { pressed = false }, 1000);
         zpuscice=0;
         ypuscice=getRandomfloat(-0.4,0.1);
         xpuscice=getRandomfloat(-0.4,0.1);
@@ -740,7 +747,7 @@ function drawScene() {
     //scale dart
     mat4.scale(mvMatrix, [3,3,3]);
 
-    document.getElementById("mocMeta").innerHTML="Moc meta: "+moc;
+    document.getElementById("mocMeta").innerHTML="Throw strength: "+moc;
     //mocdisplay=moc;
 
 
