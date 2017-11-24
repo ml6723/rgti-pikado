@@ -1,3 +1,10 @@
+// TODO
+// igralnost - moc meta
+// okolica
+// score v html
+
+
+
 // Global variable definitionvar canvas;
 var canvas;
 var score_canvas = document.getElementById("score");
@@ -19,6 +26,14 @@ var targetVertexBuffer;
 var targetTextureBuffer;
 var targetNormalBuffer;
 var targetIndexBuffer;
+
+var tableVertexBuffer;
+var tableTextureBuffer;
+var tableNormalBuffer;
+var tableIndexBuffer;
+
+
+
 
 // Model-view and projection matrix and model-view matrix stack
 var mvMatrixStack = [];
@@ -43,11 +58,13 @@ var currentlyPressedKeys = {};
 // target radius
 var radius = 2.2;
 
+//koordinate tarce
+var zTarget = 20;
 
 //koordinate puscice
 var zpuscice=0;
 var ypuscice=0;
-var xpuscice=1.2;
+var xpuscice=0;
 //razdalje do tarce, nframeov
 var a=50;
 var dif2=a;
@@ -60,13 +77,12 @@ var pause=true;
 mat4.translate(mvMatrix,[xpuscice,ypuscice,-zpuscice]);
 **/
 
-//koordinate tarce
-var zTarget = 82;
+
 
 // flag to print score
 var print_score = false;
 
-var total_score = 0;
+var total_score = 301;
 
 //
 // score sections points calculation
@@ -127,20 +143,35 @@ function calculate_score() {
             result *= 3;
     }
 
+    ctx.font="30px Arial";
+    ctx.fillStyle = "red";
+
     var s = "Your score: ";
     var sc = String(result);
     var final_score = s.concat(sc);
 
-    var t = "Total score: ";
-    total_score += result;
-    var total = t.concat(String(total_score));
+    total_score -= result;
+    var t;
+    var total;
+
+
+    if(total_score < 0) {
+        total = "You scored too many"
+        ctx.fillText(" points. Throw again.", 10, 130);
+    } else if(total_score == 0) {
+        t = "Total score: ";
+        total = t.concat(String(total_score));
+        ctx.fillText("You won!",80,130);
+    } else {
+        t = "Total score: ";
+        total = t.concat(String(total_score));
+    }
 
     //test
 
-    ctx.font="30px Arial";
-    ctx.fillStyle = "red";
-    ctx.fillText(final_score,10,50);
-    ctx.fillText(total,10,100);
+
+    ctx.fillText(final_score,10,30);
+    ctx.fillText(total,10,80);
 }
 
 function is_in_triangle (px,py,ax,ay,bx,by,cx,cy) {
@@ -568,7 +599,7 @@ function drawScene() {
     mvPushMatrix();
 
     // translate the dart
-    mat4.translate(mvMatrix, [10.0, 0.0, -20]);
+    mat4.translate(mvMatrix, [19.2, 0.0, -20]);
 
     // Rotate dart before we draw.
     mat4.rotate(mvMatrix, degToRad(180), [1, 0, 0]);
@@ -606,8 +637,6 @@ function drawScene() {
 
 
 
-
-
     // Draw the cube by binding the array buffer to the cube's vertices
     // array, setting attributes, and pushing it to GL.
     gl.bindBuffer(gl.ARRAY_BUFFER, dartVertexBuffer);
@@ -633,7 +662,7 @@ function drawScene() {
     mvPushMatrix();
 
     // translate the target
-    mat4.translate(mvMatrix, [-12.0, 3.1, -100]);
+    mat4.translate(mvMatrix, [0.0, 3.1, -100]);
 
 
     // Rotate target before we draw.
@@ -697,7 +726,7 @@ function start() {
 
     // Only continue if WebGL is available and working
     if (gl) {
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);                      // Set clear color to black, fully opaque
+        gl.clearColor(0.0, 0.0, 0.0, 0.0);                      // Set clear color to black, fully opaque
         gl.clearDepth(1.0);                                     // Clear everything
         gl.enable(gl.DEPTH_TEST);                               // Enable depth testing
         gl.depthFunc(gl.LEQUAL);                                // Near things obscure far things
