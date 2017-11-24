@@ -61,6 +61,12 @@ var radius = 2.2;
 //koordinate tarce
 var zTarget = 20;
 
+//moc meta
+var moc=50;
+var MAXHEIGHT=200;
+var MINHEIGHT=-100;
+
+
 //koordinate puscice
 var zpuscice=0;
 var ypuscice=0;
@@ -240,6 +246,18 @@ function handleKeys() {
             // Down cursor key
             ypuscice += 0.01;
         }
+        if (currentlyPressedKeys[77]) {
+            // M
+            if (moc < MAXHEIGHT) {
+                moc+=0.5;
+            }
+        }
+        if (currentlyPressedKeys[78]) {
+            // N
+            if (moc > MINHEIGHT) {
+                moc-=0.5;
+            }
+        }
     }
     if (currentlyPressedKeys[32]) {
         // Space Key
@@ -249,16 +267,22 @@ function handleKeys() {
     if (currentlyPressedKeys[13]) {
         // enter ---reset
         zpuscice=0;
-        ypuscice=0;
-        xpuscice=0;
+        ypuscice=getRandomfloat(-0.4,0.1);
+        xpuscice=getRandomfloat(-0.4,0.1);
         a=50;
         dif2=a;
         dif=0;
+        moc=50;
         pause=true;
         reset=true;
         //initBuffers();
     }
 }
+
+function getRandomfloat(min, max) {
+    return Math.random() * (max - min + 0.1) + min;
+}
+
 
 function handleKeyDown(event) {
     // storing the pressed state for individual key
@@ -610,15 +634,21 @@ function drawScene() {
     //scale dart
     mat4.scale(mvMatrix, [3,3,3]);
 
+    document.getElementById("mocMeta").innerHTML="Moc meta: "+moc;
+    //mocdisplay=moc;
+
+
+
     //met
     if(pause===false) {
         mat4.translate(mvMatrix, [xpuscice, ypuscice, zpuscice]);
         if (zpuscice < 20) {
             if(zpuscice == 19.5)
                 print_score = true;
+
             zpuscice += 0.5;
             if (dif < a) {
-                ypuscice -= (0.001 * (a - dif));
+                ypuscice -= (0.001 * (moc - dif));
             } else {
                 ypuscice += (0.001 * (a - dif2));
                 dif2--;
@@ -719,6 +749,7 @@ function animate() {
 //
 // Called when the canvas is created to get the ball rolling.
 //
+
 function start() {
     canvas = document.getElementById("glcanvas");
 
